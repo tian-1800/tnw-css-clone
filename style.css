@@ -5,11 +5,16 @@
 }
 
 body {
-  background-color: #ddd;
+  background-color: #eee;
   font-family: sans-serif;
 }
 main {
   padding: 0 50px;
+}
+@media only screen and (max-width: 768px) {
+  main {
+    padding: 0 10px;
+  }
 }
 section {
   margin: 50px 0;
@@ -71,6 +76,8 @@ body {
 }
 .medium-screen-header {
   height: 0;
+  background-color: #fff;
+  /* box-shadow: 0 5px 5px #ccc; */
   overflow: hidden;
 }
 @media only screen and (max-width: 1024px) {
@@ -80,14 +87,19 @@ body {
   .medium-screen-header {
     height: 60px;
     width: 100%;
-    border-bottom: 1px solid #e11;
   }
 }
 
 /* ---Main--- */
+@media only screen and (max-width: 1024) {
+  #icon-big {
+    flex-direction: column;
+  }
+}
 
 /* Highlight */
-#highlight {
+
+#highlight .grid-container {
   height: 600px;
   width: 100%;
   grid-template-columns: repeat(4 25%);
@@ -117,12 +129,9 @@ body {
 }
 
 .highlight-item {
-  background-color: #722;
-  height: 100%;
   overflow: hidden;
   position: relative;
   z-index: 0;
-  /* object-fit: cover; */
 }
 .highlight-item img {
   top: 0;
@@ -145,20 +154,22 @@ body {
   font-size: 0.9rem;
   margin-bottom: 6px;
 }
-#two .highlight-text {
-  /* position: relative; */
+#two .highlight-text,
+.highlight-item.small-screen .highlight-text {
   bottom: auto;
   text-align: center;
   padding-top: 4rem;
   left: 0;
   right: 0;
 }
-#two p:first-child {
+#two p:first-child,
+.highlight-item.small-screen p:first-child {
   text-transform: none;
   font-size: 24px;
   margin-bottom: 36px;
 }
-#two a {
+#two a,
+.highlight-item.small-screen a {
   text-transform: uppercase;
   border: solid 1px #eee;
   border-radius: 30px;
@@ -174,10 +185,16 @@ body {
   font-size: 18px;
 }
 
+.small-screen {
+  display: none;
+  height: 240px;
+}
+
 @media only screen and (max-width: 1024px) {
-  #highlight {
+  #highlight .grid-contaier {
     grid-template-columns: repeat(2 50%);
     grid-template-rows: repeat(4 25%);
+    height: 720px;
   }
   .highlight-item#one {
     background-color: #494;
@@ -203,6 +220,51 @@ body {
   .highlight-text > p:nth-child(2) {
     font-size: 18px !important;
     font-weight: normal !important;
+  }
+  #two .highlight-text {
+    padding-top: 1rem;
+  }
+  #two p:first-child {
+    margin-bottom: 12px;
+  }
+  #two a {
+    padding: 5px;
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  .scroll-container {
+    overflow-x: scroll;
+  }
+  #highlight .grid-container {
+    grid-template-columns: repeat (4 80vw);
+    grid-template-rows: 300px;
+    overflow-x: scroll;
+    height: 320px;
+    width: 320vw;
+  }
+  .highlight-item#two {
+    display: none;
+  }
+  .highlight-item#one {
+    grid-column: 1;
+    grid-row: 1;
+  }
+  .highlight-item#three {
+    grid-column: 2;
+    grid-row: 1;
+  }
+  .highlight-item#four {
+    grid-column: 3;
+    grid-row: 1;
+  }
+  .highlight-item#five {
+    grid-column: 4;
+    grid-row: 1;
+  }
+
+  .small-screen {
+    display: block !important;
   }
 }
 
@@ -287,6 +349,20 @@ section > h2 {
     height: 360px;
   }
 }
+@media only screen and (max-width: 768px) {
+  .latest-item {
+    display: flex;
+    width: 100%;
+    height: 200px;
+  }
+  .latest-item > img {
+    width: 180px;
+    height: 180px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-right: 24px;
+  }
+}
 
 /* Channel */
 .channel-item {
@@ -315,7 +391,7 @@ section > h2 {
 /* Pillars */
 #reach-your-goals {
   line-height: 1.5;
-  width:50%;
+  width: 50%;
 }
 #reach-your-goals > p:first-child {
   text-transform: uppercase;
@@ -348,14 +424,38 @@ section > h2 {
   width: 50%;
 }
 
+@media only screen and (max-width: 768px) {
+  #pillars > .flex-container {
+    display: block;
+  }
+  #reach-your-goals {
+    width: 100%;
+    text-align: center;
+  }
+  #reach-your-goals > a {
+    margin: 20px auto 50px auto;
+  }
+  #pillar-container {
+    width: 100%;
+    justify-content: center;
+  }
+  .pillar {
+    flex-direction: column;
+    height: 200px;
+  }
+  .pillar > img {
+    width: 20%;
+  }
+}
+
 /* Partners */
 #partners {
-  justify-content: center;align-items: center;
+  justify-content: center;
+  align-items: center;
 }
 
 #partners > .img-container {
-  
-  width:120px;
+  width: 120px;
 }
 
 @media only screen and (max-width: 1024px) {
@@ -375,7 +475,7 @@ section > h2 {
   background-color: #000;
 }
 #footer > .flex-container {
-  padding: 2rem 1rem 0 1rem; 
+  padding: 2rem 1rem 0 1rem;
   border-bottom: solid 1px #555;
 }
 #icons {
@@ -391,7 +491,7 @@ section > h2 {
 }
 ul h3 {
   text-transform: uppercase;
-  line-height: 2.5  ;
+  line-height: 2.5;
 }
 .footer-nav a {
   color: #4dd;
@@ -420,5 +520,4 @@ ul h3 {
     height: 400px;
     width: 100%;
   }
-
 }
